@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-import unittest
-
-from model.contact import Contact
+from contact import Contact
 from selenium.webdriver.firefox.webdriver import WebDriver
+import unittest
 
 
 def is_alert_present(wd):
