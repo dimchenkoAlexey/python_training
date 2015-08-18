@@ -5,8 +5,15 @@ class ContactHelper:
         self.app = app
 
     def create(self, contact):
+        self.fill_contact_fields(contact)
+
+    def modify(self, contact):
+        # modify contact
+        self.click_edit_button()
+        self.fill_contact_fields(contact)
+
+    def fill_contact_fields(self, contact):
         wd = self.app.wd
-        # create new contact
         wd.find_element_by_link_text("add new").click()
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -81,3 +88,19 @@ class ContactHelper:
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(contact.notes)
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+
+    def delete_first_contact(self):
+        wd = self.app.wd
+        wd.find_element_by_name("selected[]").click()
+        wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
+
+    def delete_all_contacts(self):
+        wd = self.app.wd
+        mass_checkbox = wd.find_element_by_id("MassCB")
+        if not mass_checkbox.is_selected():
+            mass_checkbox.click()
+        wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
+
+    def click_edit_button(self):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("img[alt=\"Edit\"]").click()
