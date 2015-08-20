@@ -10,11 +10,6 @@ class GroupHelper:
         # open groups page
         wd.find_element_by_link_text("groups").click()
 
-    def return_to_groups_page(self):
-        wd = self.app.wd
-        # open groups page
-        wd.find_element_by_link_text("group page").click()
-
     def create(self, group):
         wd = self.app.wd
         self.open_groups_page()
@@ -49,7 +44,7 @@ class GroupHelper:
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_name("delete").click()
-        self.return_to_groups_page()
+        self.open_groups_page()
 
     def click_edit_button(self):
         wd = self.app.wd
@@ -62,7 +57,7 @@ class GroupHelper:
             if not checkbox.is_selected():
                 checkbox.click()
         wd.find_element_by_name("delete").click()
-        self.return_to_groups_page()
+        self.open_groups_page()
 
     def count(self):
         wd = self.app.wd
