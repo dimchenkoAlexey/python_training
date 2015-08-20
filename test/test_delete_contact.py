@@ -2,7 +2,6 @@ from model.contact import Contact
 
 
 def test_delete_first_contact(app):
-    app.session.login(username="admin", password="secret")
     # контакт добавляется на случай если нет ни одного контакта
     app.contact.create(Contact(firstname="firstname", middlename="middlename", lastname="lastname",
                        nickname="nickname", title="title", company="company", address="address", phone_home="1111111",
@@ -12,11 +11,9 @@ def test_delete_first_contact(app):
     app.navigation.return_to_home_page()
     app.contact.delete_first_contact()
     app.navigation.modal_window_ok()
-    app.session.logout()
 
 
 def test_delete_cancelled(app):
-    app.session.login(username="admin", password="secret")
     # контакт добавляется на случай если нет ни одного контакта
     app.contact.create(Contact(firstname="firstname", middlename="middlename", lastname="lastname",
                        nickname="nickname", title="title", company="company", address="address", phone_home="1111111",
@@ -26,11 +23,9 @@ def test_delete_cancelled(app):
     app.navigation.return_to_home_page()
     app.contact.delete_first_contact()
     app.navigation.modal_window_cancel()
-    app.session.logout()
 
 
 def test_delete_all(app):
-    app.session.login(username="admin", password="secret")
     # контакт добавляется на случай если нет ни одного контакта
     app.contact.create(Contact(firstname="firstname", middlename="middlename", lastname="lastname",
                        nickname="nickname", title="title", company="company", address="address", phone_home="1111111",
@@ -45,5 +40,4 @@ def test_delete_all(app):
     app.navigation.return_to_home_page()
     app.contact.delete_all_contacts()
     app.navigation.modal_window_ok()
-    app.session.logout()
 
